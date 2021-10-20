@@ -14,9 +14,10 @@ class App extends Component {
   render() {
     return (
       //outputting Hello World and The current time to the screen
-      //We also use the header, content and footer taga 
+      //We also use the header, content and footer tags
       //Which are declared in the header.js, contents.js and footer.js files to export the contents of the file 
       //And output onto the screen of App.js
+      //Also creates a route to get to each section of the application in a one-page application format
       <Router>
         <div className="App">
           <Navbar bg="primary" variant="dark">
@@ -28,7 +29,7 @@ class App extends Component {
             </Nav>
           </Navbar>
 
-          <br />
+          <br/>
           <Switch>
           <Route path='/' component={Content} exact/>
           <Route path='/create' component={Create} ecact />

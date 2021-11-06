@@ -4,20 +4,22 @@ import axios from 'axios';
 
 export class Read extends React.Component
 {
+    state = {
+       movies:  []
+        };
+
     //Life cycle method that holds the json data and function to get and catch the variables
     componentDidMount() 
     {
-        axios.get('https://jsonblob.com/api/jsonblob/894944504570986496')
+        // Getting the json data from the backend server instead of a json interpeter 
+        axios.get('http://localhost:4000/api/movies')
         .then((response)=>{
-            this.setState({ movies:response.data.movies })
+            this.setState({ movies:response.data.movies})
         })
         .catch((error)=>{
             console.log(error);
         });
     }
-    state = {
-       movies:  []
-        };
 
     render()
     {

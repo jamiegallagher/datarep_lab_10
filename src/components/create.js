@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export class Create extends React.Component {
     //Creating a constructor to bind the data to the event constructors
@@ -27,6 +28,21 @@ export class Create extends React.Component {
             Year: '',
             Poster: ''
         }
+
+        const newMovie = {
+            title: this.state.Title,
+            year: this.state.Year,
+            poster: this.state.Poster
+        }
+
+         //Making request to the url localhost:4000 and passing the movies that are added into the database
+         axios.post('http://localhost:400/api/movies', newMovie)
+         .then((res)=>{
+             console.log(res);
+         })
+         .catch((err)=>{
+             console.log(err);
+         });
     }
     onChangeMovieName(event)
     {

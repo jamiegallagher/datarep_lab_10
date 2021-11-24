@@ -87,7 +87,15 @@ app.put('/api/movies/:id', (req,res)=>{
       (err,data)=>{
           res.send(data);
       })
-      
+    })
+
+    //Method to listen out for an id to delete information from the database
+    app.delete('/api/movies/:id', (req,res)=>{
+      console.log("Delete Movie: "+req.params.id);
+
+      MovieModel.findByIdAndDelete(req.params.id,(err, data)=>{
+        res.send(data);
+      })
     })
 app.post('/api/movies', (req, res)=>{
     console.log('Movie Recieved!');

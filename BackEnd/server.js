@@ -3,6 +3,7 @@ const app = express()
 const port = 4000
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
 app.use(cors());
 
@@ -13,6 +14,10 @@ res.header("Access-Control-Allow-Headers",
 "Origin, X-Requested-With, Content-Type, Accept");
 next();
 });
+
+//Instantiating the directory for the build files
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
 
 
 
@@ -111,6 +116,12 @@ app.post('/api/movies', (req, res)=>{
 
     res.send('Item Added');
 })
+
+//Making a http request to get back the index.html page within the build folder
+//With this method we get the front end and back end of application regardless of which localhost we use
+app.get('*', (req,res)=>{
+  res.sendFile(path.join(__dirname+'/../build/index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
